@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DataService xsi:noNamespaceSchemaLocation="D://XML/DataService.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <SQLTrans DataGroupId="writeMyOa" TransName="add" TransFlag="1">
+        <Insert>
+            <OutputSQL> insert into myoa.tb_company(strAddress,strEmail,strFax,strName,strPhone,strPostCode,strResume,strURL)	values({strAddress|NULL},{strEmail|NULL},{strFax|NULL},{strName|NULL},{strPhone|NULL},{strPostCode|NULL},{strResume|NULL},{strURL|NULL})</OutputSQL>
+        </Insert>
+        <SelectField OutputId="{lId}">
+            <OutputSQL> select LAST_INSERT_ID() lId FROM myoa.tb_company	</OutputSQL>
+        </SelectField>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="CompanyService.findList.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{lId}" ValueId="{lId}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="writeMyOa" TransName="delete" TransFlag="1">
+        <Delete RecordCountId="{nRecordCount}">
+            <OutputSQL> delete from myoa.tb_company	where 1=1	</OutputSQL>
+            <SQLIf Value2="" Value1="{lId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lId = {lId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strAddress}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strAddress = {strAddress} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strEmail}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strEmail = {strEmail} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strFax}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strFax = {strFax} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strName}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strName = {strName} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strPhone}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strPhone = {strPhone} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strPostCode}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strPostCode = {strPostCode} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strResume}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strResume = {strResume} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strURL}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strURL = {strURL} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+        </Delete>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="CompanyService.delete.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="writeMyOa" TransName="update" TransFlag="1">
+        <Update RecordCountId="{nRecordCount}">
+            <OutputSQL> update myoa.tb_company set lId=lId </OutputSQL>
+            <SQLIf Value2="" Value1="{strAddress}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	, strAddress = {strAddress} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strEmail}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	, strEmail = {strEmail} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strFax}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	, strFax = {strFax} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strName}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	, strName = {strName} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strPhone}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	, strPhone = {strPhone} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strPostCode}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	, strPostCode = {strPostCode} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strResume}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	, strResume = {strResume} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strURL}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	, strURL = {strURL} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <OutputSQL> where 1=1 </OutputSQL>
+            <SQLIf Value2="" Value1="{lId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lId = {lId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strAddress}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strAddress = {strAddress} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strEmail}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strEmail = {strEmail} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strFax}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strFax = {strFax} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strName}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strName = {strName} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strPhone}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strPhone = {strPhone} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strPostCode}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strPostCode = {strPostCode} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strResume}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strResume = {strResume} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strURL}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strURL = {strURL} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+        </Update>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="CompanyService.update.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="readMyOa" TransName="findOne" TransFlag="0">
+        <SelectRecord RecordCountId="{nRecordCount}" OutputId="{cdoCompany}">
+            <OutputSQL> select * from myoa.tb_company	where 1=1 </OutputSQL>
+            <SQLIf Value2="" Value1="{lId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lId = {lId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strAddress}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strAddress = {strAddress} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strEmail}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strEmail = {strEmail} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strFax}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strFax = {strFax} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strName}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strName = {strName} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strPhone}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strPhone = {strPhone} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strPostCode}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strPostCode = {strPostCode} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strResume}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strResume = {strResume} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strURL}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strURL = {strURL} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <OutputSQL> limit 1	</OutputSQL>
+        </SelectRecord>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="CompanyService.findOne.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{cdoCompany}" ValueId="{cdoCompany}"/>
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="readMyOa" TransName="findList" TransFlag="0">
+        <SelectRecordSet RecordCountId="{nRecordCount}" OutputId="{cdosCompany}">
+            <OutputSQL>	select * from myoa.tb_company where 1=1	</OutputSQL>
+            <SQLIf Value2="" Value1="{lId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lId = {lId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strAddress}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strAddress = {strAddress} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strEmail}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strEmail = {strEmail} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strFax}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strFax = {strFax} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strName}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strName = {strName} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strPhone}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strPhone = {strPhone} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strPostCode}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strPostCode = {strPostCode} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strResume}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strResume = {strResume} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strURL}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strURL = {strURL} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+        </SelectRecordSet>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="CompanyService.findList.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{cdosCompany}" ValueId="{cdosCompany}"/>
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="readMyOa" TransName="findListByPage" TransFlag="0">
+        <SelectRecordSet RecordCountId="{nRecordCount}" OutputId="{cdosCompany}">
+            <OutputSQL>	select * from myoa.tb_company where 1=1	</OutputSQL>
+            <SQLIf Value2="" Value1="{lId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lId = {lId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strAddress}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strAddress = {strAddress} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strEmail}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strEmail = {strEmail} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strFax}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strFax = {strFax} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strName}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strName = {strName} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strPhone}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strPhone = {strPhone} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strPostCode}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strPostCode = {strPostCode} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strResume}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strResume = {strResume} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strURL}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strURL = {strURL} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <OutputSQL> limit {start},{limit} </OutputSQL>
+        </SelectRecordSet>
+        <SelectField OutputId="{nTotalCount}">
+            <OutputSQL>	select count(*) from myoa.tb_company where 1=1	</OutputSQL>
+            <SQLIf Value2="" Value1="{lId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lId = {lId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strAddress}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strAddress = {strAddress} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strEmail}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strEmail = {strEmail} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strFax}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strFax = {strFax} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strName}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strName = {strName} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strPhone}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strPhone = {strPhone} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strPostCode}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strPostCode = {strPostCode} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strResume}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strResume = {strResume} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{strURL}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND strURL = {strURL} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+        </SelectField>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="CompanyService.findListByPage.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{cdosCompany}" ValueId="{cdosCompany}"/>
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+            <ReturnItem FieldId="{nTotalCount}" ValueId="{nTotalCount}"/>
+        </Return>
+    </SQLTrans>
+</DataService>

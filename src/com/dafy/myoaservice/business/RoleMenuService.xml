@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DataService xsi:noNamespaceSchemaLocation="D://XML/DataService.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <SQLTrans DataGroupId="writeMyOa" TransName="add" TransFlag="1">
+        <Insert>
+            <OutputSQL> insert into myoa.tb_role_menu(lRoleId,lMenuId)	values({lRoleId|NULL},{lMenuId|NULL})</OutputSQL>
+        </Insert>
+        <SelectField OutputId="{lId}">
+            <OutputSQL> select LAST_INSERT_ID() lId FROM myoa.tb_role_menu	</OutputSQL>
+        </SelectField>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="RoleMenuService.findList.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{lId}" ValueId="{lId}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="writeMyOa" TransName="delete" TransFlag="1">
+        <Delete RecordCountId="{nRecordCount}">
+            <OutputSQL> delete from myoa.tb_role_menu	where 1=1	</OutputSQL>
+            <SQLIf Value2="" Value1="{lRoleId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lRoleId = {lRoleId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{lMenuId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lMenuId = {lMenuId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+        </Delete>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="RoleMenuService.delete.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="writeMyOa" TransName="update" TransFlag="1">
+        <Update RecordCountId="{nRecordCount}">
+            <OutputSQL> update myoa.tb_role_menu set lRoleId=lRoleId </OutputSQL>
+            <SQLIf Value2="" Value1="{lRoleId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	, lRoleId = {lRoleId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{lMenuId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	, lMenuId = {lMenuId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <OutputSQL> where 1=1 </OutputSQL>
+            <SQLIf Value2="" Value1="{lRoleId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lRoleId = {lRoleId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{lMenuId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lMenuId = {lMenuId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+        </Update>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="RoleMenuService.update.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="readMyOa" TransName="findOne" TransFlag="0">
+        <SelectRecord RecordCountId="{nRecordCount}" OutputId="{cdoRoleMenu}">
+            <OutputSQL> select * from myoa.tb_role_menu	where 1=1 </OutputSQL>
+            <SQLIf Value2="" Value1="{lRoleId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lRoleId = {lRoleId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{lMenuId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lMenuId = {lMenuId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <OutputSQL> limit 1	</OutputSQL>
+        </SelectRecord>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="RoleMenuService.findOne.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{cdoRoleMenu}" ValueId="{cdoRoleMenu}"/>
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="readMyOa" TransName="findList" TransFlag="0">
+        <SelectRecordSet RecordCountId="{nRecordCount}" OutputId="{cdosRoleMenu}">
+            <OutputSQL>	select * from myoa.tb_role_menu where 1=1	</OutputSQL>
+            <SQLIf Value2="" Value1="{lRoleId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lRoleId = {lRoleId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{lMenuId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lMenuId = {lMenuId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+        </SelectRecordSet>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="RoleMenuService.findList.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{cdosRoleMenu}" ValueId="{cdosRoleMenu}"/>
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="readMyOa" TransName="findListByPage" TransFlag="0">
+        <SelectRecordSet RecordCountId="{nRecordCount}" OutputId="{cdosRoleMenu}">
+            <OutputSQL>	select * from myoa.tb_role_menu where 1=1	</OutputSQL>
+            <SQLIf Value2="" Value1="{lRoleId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lRoleId = {lRoleId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{lMenuId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lMenuId = {lMenuId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <OutputSQL> limit {start},{limit} </OutputSQL>
+        </SelectRecordSet>
+        <SelectField OutputId="{nTotalCount}">
+            <OutputSQL>	select count(*) from myoa.tb_role_menu where 1=1	</OutputSQL>
+            <SQLIf Value2="" Value1="{lRoleId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lRoleId = {lRoleId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{lMenuId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lMenuId = {lMenuId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+        </SelectField>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="RoleMenuService.findListByPage.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{cdosRoleMenu}" ValueId="{cdosRoleMenu}"/>
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+            <ReturnItem FieldId="{nTotalCount}" ValueId="{nTotalCount}"/>
+        </Return>
+    </SQLTrans>
+</DataService>

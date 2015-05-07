@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NodeList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<Node Id="MyOaService">
+		<HttpServiceClient URL="http://myoa.yl.service/handleTrans.cdo" Encoding="utf-8" />
+		<ToDoFilter Default="true" />
+		<TransFilter Default="false">
+			<Action ServiceName="CompanyService" Enabled="true" />
+			<Action ServiceName="DeparmentService" Enabled="true" />
+			<Action ServiceName="MenuService" Enabled="true" />
+			<Action ServiceName="OrgUserService" Enabled="true" />
+			<Action ServiceName="PositionService" Enabled="true" />
+			<Action ServiceName="RoleMenuService" Enabled="true" />
+			<Action ServiceName="RoleService" Enabled="true" />
+			<Action ServiceName="UserDeparmentService" Enabled="true" />
+			<Action ServiceName="UserPositionService" Enabled="true" />
+			<Action ServiceName="UserService" Enabled="true" />
+		</TransFilter>
+		<EventFilter Default="true" />
+	</Node>
+
+</NodeList>

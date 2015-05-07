@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="MyOaService"
+  id="myeclipse.1429541057501"
+  context-root="/MyOaService"
+  j2ee-spec="5.0"
+  archive="MyOaService.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

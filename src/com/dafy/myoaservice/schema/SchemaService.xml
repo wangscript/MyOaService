@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D://XML/DataService.xsd">
+	
+	<SQLTrans TransFlag="0" TransName="findTableList" DataGroupId="readSchema">
+		<SelectRecordSet OutputId="{cdosTable}" RecordCountId="{nRecordCount}">
+			<OutputSQL> select TABLE_SCHEMA,TABLE_NAME,TABLE_TYPE from TABLES where TABLE_SCHEMA = {strDBName}  </OutputSQL>
+		</SelectRecordSet>
+		<OnException>
+			<Return Info="TaskRuleService.getList.Error" Code="-1"></Return>
+		</OnException>
+		<Return Info="OK" Code="0">
+			<ReturnItem ValueId="{cdosTable}" FieldId="{cdosTable}"></ReturnItem>
+			<ReturnItem ValueId="{nRecordCount}" FieldId="{nRecordCount}"></ReturnItem>
+		</Return>
+	</SQLTrans>
+	
+	<SQLTrans TransFlag="0" TransName="findColumnList" DataGroupId="readSchema">
+		<SelectRecordSet OutputId="{cdosColumn}" RecordCountId="{nRecordCount}">
+			<OutputSQL> select TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME,DATA_TYPE,IS_NULLABLE,COLUMN_DEFAULT,COLUMN_KEY,EXTRA from COLUMNS where TABLE_SCHEMA = {strDBName} And TABLE_NAME={strTableName}  </OutputSQL>
+		</SelectRecordSet>
+		<OnException>
+			<Return Info="TaskRuleService.getList.Error" Code="-1"></Return>
+		</OnException>
+		<Return Info="OK" Code="0">
+			<ReturnItem ValueId="{cdosColumn}" FieldId="{cdosColumn}"></ReturnItem>
+			<ReturnItem ValueId="{nRecordCount}" FieldId="{nRecordCount}"></ReturnItem>
+		</Return>
+	</SQLTrans>
+
+</DataService>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServicePlugin xsi:noNamespaceSchemaLocation="D://XML/ServiceBus.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ServiceConfig Name="CompanyService">
+    	<TransService ClassPath="com.dafy.myoaservice.business.CompanyService"/>
+        <DataService Resource="com/dafy/myoaservice/business/CompanyService.xml"/>
+    </ServiceConfig>
+    <ServiceConfig Name="DeparmentService">
+        <DataService Resource="com/dafy/myoaservice/business/DeparmentService.xml"/>
+    </ServiceConfig>
+    <ServiceConfig Name="MenuService">
+        <DataService Resource="com/dafy/myoaservice/business/MenuService.xml"/>
+    </ServiceConfig>
+    <ServiceConfig Name="PositionService">
+        <DataService Resource="com/dafy/myoaservice/business/PositionService.xml"/>
+    </ServiceConfig>
+    <ServiceConfig Name="RoleService">
+        <DataService Resource="com/dafy/myoaservice/business/RoleService.xml"/>
+    </ServiceConfig>
+    <ServiceConfig Name="RoleMenuService">
+        <DataService Resource="com/dafy/myoaservice/business/RoleMenuService.xml"/>
+    </ServiceConfig>
+    <ServiceConfig Name="UserService">
+    	<TransService ClassPath="com.dafy.myoaservice.business.UserService" />
+        <DataService Resource="com/dafy/myoaservice/business/UserService.xml"/>
+    </ServiceConfig>
+    <ServiceConfig Name="UserDeparmentService">
+        <DataService Resource="com/dafy/myoaservice/business/UserDeparmentService.xml"/>
+    </ServiceConfig>
+    <ServiceConfig Name="UserPositionService">
+        <DataService Resource="com/dafy/myoaservice/business/UserPositionService.xml"/>
+    </ServiceConfig>
+</ServicePlugin>

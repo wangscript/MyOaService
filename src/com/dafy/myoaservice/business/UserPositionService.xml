@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DataService xsi:noNamespaceSchemaLocation="D://XML/DataService.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <SQLTrans DataGroupId="writeMyOa" TransName="add" TransFlag="1">
+        <Insert>
+            <OutputSQL> insert into myoa.tb_user_position(lUserId,lPositionId)	values({lUserId|NULL},{lPositionId|NULL})</OutputSQL>
+        </Insert>
+        <SelectField OutputId="{lId}">
+            <OutputSQL> select LAST_INSERT_ID() lId FROM myoa.tb_user_position	</OutputSQL>
+        </SelectField>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="UserPositionService.findList.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{lId}" ValueId="{lId}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="writeMyOa" TransName="delete" TransFlag="1">
+        <Delete RecordCountId="{nRecordCount}">
+            <OutputSQL> delete from myoa.tb_user_position	where 1=1	</OutputSQL>
+            <SQLIf Value2="" Value1="{lUserId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lUserId = {lUserId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{lPositionId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lPositionId = {lPositionId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+        </Delete>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="UserPositionService.delete.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="writeMyOa" TransName="update" TransFlag="1">
+        <Update RecordCountId="{nRecordCount}">
+            <OutputSQL> update myoa.tb_user_position set lUserId=lUserId </OutputSQL>
+            <SQLIf Value2="" Value1="{lUserId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	, lUserId = {lUserId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{lPositionId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	, lPositionId = {lPositionId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <OutputSQL> where 1=1 </OutputSQL>
+            <SQLIf Value2="" Value1="{lUserId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lUserId = {lUserId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{lPositionId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lPositionId = {lPositionId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+        </Update>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="UserPositionService.update.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="readMyOa" TransName="findOne" TransFlag="0">
+        <SelectRecord RecordCountId="{nRecordCount}" OutputId="{cdoUserPosition}">
+            <OutputSQL> select * from myoa.tb_user_position	where 1=1 </OutputSQL>
+            <SQLIf Value2="" Value1="{lUserId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lUserId = {lUserId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{lPositionId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lPositionId = {lPositionId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <OutputSQL> limit 1	</OutputSQL>
+        </SelectRecord>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="UserPositionService.findOne.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{cdoUserPosition}" ValueId="{cdoUserPosition}"/>
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="readMyOa" TransName="findList" TransFlag="0">
+        <SelectRecordSet RecordCountId="{nRecordCount}" OutputId="{cdosUserPosition}">
+            <OutputSQL>	select * from myoa.tb_user_position where 1=1	</OutputSQL>
+            <SQLIf Value2="" Value1="{lUserId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lUserId = {lUserId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{lPositionId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lPositionId = {lPositionId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+        </SelectRecordSet>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="UserPositionService.findList.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{cdosUserPosition}" ValueId="{cdosUserPosition}"/>
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+        </Return>
+    </SQLTrans>
+    <SQLTrans DataGroupId="readMyOa" TransName="findListByPage" TransFlag="0">
+        <SelectRecordSet RecordCountId="{nRecordCount}" OutputId="{cdosUserPosition}">
+            <OutputSQL>	select * from myoa.tb_user_position where 1=1	</OutputSQL>
+            <SQLIf Value2="" Value1="{lUserId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lUserId = {lUserId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{lPositionId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lPositionId = {lPositionId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <OutputSQL> limit {start},{limit} </OutputSQL>
+        </SelectRecordSet>
+        <SelectField OutputId="{nTotalCount}">
+            <OutputSQL>	select count(*) from myoa.tb_user_position where 1=1	</OutputSQL>
+            <SQLIf Value2="" Value1="{lUserId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lUserId = {lUserId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+            <SQLIf Value2="" Value1="{lPositionId}" Operator="EXIST" Type="String">
+                <SQLThen>
+                    <OutputSQL>	AND lPositionId = {lPositionId} </OutputSQL>
+                </SQLThen>
+            </SQLIf>
+        </SelectField>
+        <OnException>
+            <Return Text="数据库查询出错！" Info="UserPositionService.findListByPage.Error" Code="-1"/>
+        </OnException>
+        <Return Text="OK" Info="OK" Code="0">
+            <ReturnItem FieldId="{cdosUserPosition}" ValueId="{cdosUserPosition}"/>
+            <ReturnItem FieldId="{nRecordCount}" ValueId="{nRecordCount}"/>
+            <ReturnItem FieldId="{nTotalCount}" ValueId="{nTotalCount}"/>
+        </Return>
+    </SQLTrans>
+</DataService>

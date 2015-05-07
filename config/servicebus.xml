@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceBus xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<DataServiceEngine>com.cdoframework.cdolib.database.BigDataEngine</DataServiceEngine>
+	<Parameter Name="readGroupCountId" Value="readMyOa"/>
+	<Parameter Name="writeGroupCountId" Value="writeMyOa"/>
+	<DataGroup Id="readMyOa" ClassPath="com.dafy.dflib.business.DataEngine" Driver="com.mysql.jdbc.Driver">
+		<Database URI="jdbc:mysql://127.0.0.1:3306/myoa?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;autoReconnect=true&amp;failOverReadOnly=false" LoadLevel="100">
+			<User UserName="root" Password=""/>
+			<ConnectionPool>
+				<MinConnectionCount>1</MinConnectionCount>
+				<MaxConnectionCount>10</MaxConnectionCount>
+			</ConnectionPool>
+		</Database>
+	</DataGroup>
+	<DataGroup Id="writeMyOa" ClassPath="com.dafy.dflib.business.DataEngine" Driver="com.mysql.jdbc.Driver">
+		<Database URI="jdbc:mysql://127.0.0.1:3306/myoa?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;autoReconnect=true&amp;failOverReadOnly=false" LoadLevel="100">
+			<User UserName="root" Password=""/>
+			<ConnectionPool>
+				<MinConnectionCount>1</MinConnectionCount>
+				<MaxConnectionCount>10</MaxConnectionCount>
+			</ConnectionPool>
+		</Database>
+	</DataGroup>
+	
+	<DataGroup Id="writeMyOa1" ClassPath="com.dafy.dflib.business.DataEngine" Driver="com.mysql.jdbc.Driver">
+		<Database URI="jdbc:mysql://127.0.0.1:3306/myoa?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;autoReconnect=true&amp;failOverReadOnly=false" LoadLevel="100">
+			<User UserName="root" Password=""/>
+			<ConnectionPool>
+				<MinConnectionCount>1</MinConnectionCount>
+				<MaxConnectionCount>10</MaxConnectionCount>
+			</ConnectionPool>
+		</Database>
+	</DataGroup>
+	
+	
+	
+	<DataGroup Id="readSchema" ClassPath="com.dafy.dflib.business.DataEngine" Driver="com.mysql.jdbc.Driver">
+		<Database URI="jdbc:mysql://127.0.0.1:3306/information_schema?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;autoReconnect=true&amp;failOverReadOnly=false" LoadLevel="100">
+			<User UserName="root" Password=""/>
+			<ConnectionPool>
+				<MinConnectionCount>1</MinConnectionCount>
+				<MaxConnectionCount>10</MaxConnectionCount>
+			</ConnectionPool>
+		</Database>
+	</DataGroup>
+	
+	
+	<Plugin Resource="com/dafy/myoaservice/schema/plugin.xml" Encoding="utf-8"></Plugin>
+	<Plugin Resource="com/dafy/myoaservice/business/plugin.xml" Encoding="utf-8"></Plugin>
+	
+	<EventProcessor ThreadCount="1"></EventProcessor>
+	<LocalNode Id="MyOaService"></LocalNode>
+	<NodeList Resource="NodeList.xml" Encoding="utf-8"/>
+</ServiceBus>
